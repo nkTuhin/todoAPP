@@ -1,0 +1,75 @@
+{% extends 'master.html' %}
+
+{% block title %} TODO | Your To-Do App {% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="header">
+    <div class="header_title">
+      <h1>Your To Do Application</h1>
+    </div>
+  </div>
+  <div class="main_box">
+    <!-- Input To Do from user  -->
+    <div class="todo_input_section">
+      <div class="todo_form">
+        <form class="form" action="{% url 'addtodo' %}" method="POST">
+          {% csrf_token %}
+          <div class="input_field">
+            {{ form.input_text }}
+          </div>
+          <div class="add_button">
+            <button id="button" type="submit" name="button">Add To-Do</button>
+          </div>
+        </form>
+      </div>
+      <!-- Todo delete functionality -->
+      <div class="action_functionality">
+        <div class="completed_function">
+          <a href="{% url 'delete_completed_todo' %}">Delete Completed To-Do</a>
+        </div>
+        <div class="all_function">
+          <a href="{% url 'delete_all_todo' %}">Delete All <br> To-Do</a>
+        </div>
+      </div>
+      <!-- ToDo list tips section -->
+      <div class="tips_box">
+        <div class="tips_left">
+          <div class="tips_header">
+            <h3>Tips:</h3>
+          </div>
+        </div>
+        <div class="tips_right">
+          <div class="completed_tips">
+            <h4>Example of Completed Task</h4>
+          </div>
+          <div class="uncompleted_tips">
+            <h4>Example of uncompleted Task</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="todo_input_list">
+      <div class="list_title">
+        <h3>Here is your To-Do</h3>
+      </div>
+      <!-- View todo section -->
+      <div class="list_view">
+        <ul>
+          {% for todo in todo_list %}
+          {% if todo.complete_todo %}
+          <a id="uncompleted_link" href="{% url 'un_completed_todo' todo.id %}">
+            <li class="completed_todo">{{ todo.input_text }}</li>
+          </a>
+          {% else %}
+          <a href="{% url 'completed_todo' todo.id %}">
+            <li class="uncompleted_todo">{{ todo.input_text }}</li>
+          </a>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

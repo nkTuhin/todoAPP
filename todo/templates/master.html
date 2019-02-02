@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>
+    {% block title %}{% endblock %}
+  </title>
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Berkshire+Swash|Fanwood+Text|Fontdiner+Swanky|IM+Fell+DW+Pica|Josefin+Slab|Major+Mono+Display|Megrim|Neucha|Nixie+One|Poiret+One|Snippet|Tienne" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'todo/style.css' %}">
+</head>
+
+<body class="body">
+  {% block body %}
+
+  {% endblock %}
+</body>
+
+</html>
