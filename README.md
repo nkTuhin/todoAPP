@@ -1,1 +1,1 @@
-# todoAPP written by python.
+# todoAPP written by python web framework called Django
